@@ -91,6 +91,7 @@ namespace DogGo.Repositories
                     cmd.Parameters.AddWithValue("@id", id);
 
                     SqlDataReader reader = cmd.ExecuteReader();
+                    List<Dog> dogs = new List<Dog>();
 
                     if (reader.Read())
                     {
@@ -108,7 +109,12 @@ namespace DogGo.Repositories
                             Id = owner.NeighborhoodId,
                             Name = reader.GetString(reader.GetOrdinal("HoodName"))
                         };
-                       
+                        //Dog dog = new Dog
+                        //{
+                        //    Name = reader.GetString(reader.GetOrdinal("DogName"))
+                        //};
+                        //dogs.Add(dog);
+                        
                         owner.Neighborhood = neighborhood;
 
 

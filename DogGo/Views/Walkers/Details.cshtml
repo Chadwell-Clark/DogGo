@@ -1,42 +1,98 @@
-﻿@model DogGo.Models.Walker
+﻿@model DogGo.Models.ViewModels.WalkerProfileViewModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Profile";
 }
-
-<h1>Details</h1>
-
 <div>
-    <h4>Walker</h4>
-    <hr />
-    <dl class="row">
-        @*<dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Id)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Id)
-        </dd>*@
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Neighborhood)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Neighborhood.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ImageUrl)
-        </dt>
-        <dd class = "col-sm-10">
-            <img class="bg-info" src="@Model.ImageUrl" alt="avatar" />
-        </dd>
-    </dl>
-</div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */}) |
-    <a asp-action="Index">Back to List</a>
+    <h1 class="mb-4">@Model.Walker.Name</h1>
+
+
+    <section class="container">
+        <img style="width:100px;float:left;margin-right:20px"
+             src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Font_Awesome_5_regular_user-circle.svg" />
+        <div>
+            <label class="font-weight-bold">Name:</label>
+            <span>@Model.Walker.Name</span>
+        </div>
+
+        <div>
+            <label class="font-weight-bold">Neighborhood:</label>
+            <span>@Model.Walker.Neighborhood.Name</span>
+        </div>
+    </section>
+
+
+    @*<div>
+            @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */}) |
+            <a asp-action="Index">Back to List</a>
+        </div>*@
+    <hr class="mt-5" />
+    <div class="clearfix"></div>
+
+    <div class="row">
+        <section class="col-8 container mt-5">
+            <h1 class="text-left">Recent Walks</h1>
+
+            <div class="row">
+                <table class="table-bordered  mt-4">
+                    <thead>
+                        <tr>
+
+                            <th>
+                                Date
+                            </th>
+                            <th>
+                                Client
+                            </th>
+                            <th>
+                                </th>
+                            <th>
+                                Duration
+                            </th>
+
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Walks walk in Model.Walks)
+                        {
+                            <tr>
+
+                                <td class="text-center">
+                                    @walk.Date
+                                </td>
+                                <td class="text-center">
+                                    @walk.DogId
+                                </td>
+                                <td>
+                                    </td>
+                                <td class="text-center" >
+                                   @walk.Duration
+                                </td>
+                                
+                                
+                            </tr>
+                        }
+                    </tbody>
+                    
+                </table>
+               
+            </div>
+            </section>
+        
+
+        <section class="col-lg-4 col-md-8 container mt-5">
+            <h1>Total Walk Time</h1>
+
+            @*<ul class="list-group mt-4">
+                @foreach (Walker walker in Model.Walkers)
+                {
+                    <li class="list-group-item disabled" aria-disabled="true">
+                        <img src="@walker.ImageUrl" style="width:50px" />
+                        <span class="font-weight-bold ml-4">@walker.Name</span>
+                    </li>
+                }
+            </ul>*@
+        </section>
+    </div>
 </div>

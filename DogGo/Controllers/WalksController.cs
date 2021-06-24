@@ -59,17 +59,20 @@ namespace DogGo.Controllers
         // POST: WalksController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(WalksFormViewModel walksFormViewModel)
+        public ActionResult Create(WalksFormViewModel walksForm )
         {
             try
             {
-                
-                _walksRepo.AddWalks(walks);
+                foreach (var dogId in walksForm.MultiSelectDogs)
+                {
+                    walksForm.Walks.DogId = dogId;
+                _walksRepo.AddWalks(walksForm.Walks);
+                }
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View(walks);
+                return View();
             }
         }
 

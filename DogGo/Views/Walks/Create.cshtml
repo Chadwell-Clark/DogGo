@@ -27,11 +27,7 @@
                 <input asp-for="Walks.Duration" class="form-control" />
                 <span asp-validation-for="Walks.Duration" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-            <label asp-for="WalkerId" class="control-label"></label>
-            <input asp-for="WalkerId" class="form-control" />
-            <span asp-validation-for="WalkerId" class="text-danger"></span>
-        </div>*@
+           
             <div class="form-group">
                 <label asp-for="Walks.WalkerId" class="control-label">Walkers</label>
                 <select asp-for="Walks.WalkerId" class="form-control">
@@ -45,7 +41,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Walks.DogId" class="control-label">Dogs</label>
-                <select asp-for="Walks.DogId" class="select form-control"multiple>
+                <select asp-for="MultiSelectDogs" class="select form-control"multiple>
                     <option value="">Select Dog(s)</option>
                     @foreach (Dog dog in Model.Dogs)
                     {
@@ -54,11 +50,7 @@
                 </select>
                 <span asp-validation-for="Walks.DogId" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-                <label asp-for="Walks.DogId" class="control-label"></label>
-                <input asp-for="Walks.DogId" class="form-control" />
-                <span asp-validation-for="Walks.DogId" class="text-danger"></span>
-            </div>*@
+           
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

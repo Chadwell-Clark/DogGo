@@ -12,5 +12,7 @@ namespace DogGo.Models.ViewModels
 
         public List<Dog> Dogs { get; set; }
 
+        public int[] MultiSelectDogs { get; set; }
+
     }
 }

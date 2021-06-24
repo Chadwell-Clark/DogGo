@@ -30,7 +30,9 @@ namespace DogGo.Controllers
         // GET: WalksController
         public ActionResult Index()
         {
-            return View();
+            List<Walks> walks = _walksRepo.GetAllWalks();
+
+            return View(walks);
         }
 
         // GET: WalksController/Details/5
@@ -57,16 +59,20 @@ namespace DogGo.Controllers
         // POST: WalksController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Walks walks)
+        public ActionResult Create(WalksFormViewModel walksForm )
         {
             try
             {
-                _walksRepo.AddWalks(walks);
+                foreach (var dogId in walksForm.MultiSelectDogs)
+                {
+                    walksForm.Walks.DogId = dogId;
+                _walksRepo.AddWalks(walksForm.Walks);
+                }
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View(walks);
+                return View();
             }
         }
 

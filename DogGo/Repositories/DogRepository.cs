@@ -187,11 +187,11 @@ namespace DogGo.Repositories
 
                     cmd.Parameters.AddWithValue("@name", dog.Name);
                     cmd.Parameters.AddWithValue("@breed", dog.Breed);
-                    _ = (dog.Notes == null) ? cmd.Parameters.AddWithValue("@notes", DBNull.Value) 
+                    _= (dog.Notes == null) ? cmd.Parameters.AddWithValue("@notes", DBNull.Value) 
                         : cmd.Parameters.AddWithValue("@notes", dog.Notes);
 
-                    _ = (dog.ImageUrl == null) ? cmd.Parameters.AddWithValue("@imageurl", DBNull.Value) :
-                    cmd.Parameters.AddWithValue("@imageurl", dog.ImageUrl);
+                    _ = (dog.ImageUrl == null) ? cmd.Parameters.AddWithValue("@imageurl", DBNull.Value) 
+                    :cmd.Parameters.AddWithValue("@imageurl", dog.ImageUrl);
                     
                     cmd.Parameters.AddWithValue("@ownerId", dog.OwnerId);
 

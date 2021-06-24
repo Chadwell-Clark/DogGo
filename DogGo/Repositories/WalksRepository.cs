@@ -23,7 +23,7 @@ namespace DogGo.Repositories
                 return new SqlConnection(_config.GetConnectionString("DefaultConnection"));
             }
         }
-        public List<Walks> GetAll()
+        public List<Walks> GetAllWalks()
         {
             using (SqlConnection conn = Connection)
             {

@@ -23,14 +23,14 @@ namespace DogGo.Repositories
                 return new SqlConnection(_config.GetConnectionString("DefaultConnection"));
             }
         }
-        public List<Walks> GetAll()
+        public List<Walks> GetAllWalks()
         {
             using (SqlConnection conn = Connection)
             {
                 conn.Open();
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"SELECT Id, Name FROM Walks";
+                    cmd.CommandText = @"SELECT Id, Date, Duration, WalkerId, DogId FROM Walks";
 
                     SqlDataReader reader = cmd.ExecuteReader();
 
@@ -69,7 +69,7 @@ namespace DogGo.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT w.Id, w.Duration, w.Date, w.WalkerId, w.DogId, o.Name AS OwnerName
+                        SELECT w.Id, w.Duration, w.Date, w.WalkerId, w.DogId, o.Name AS OwnerName d.name AS DogName
                         FROM Walks w
                         LEFT JOIN Dog d ON w.DogId = d.Id
                         JOIN Owner o ON d.OwnerId = o.Id
@@ -98,6 +98,10 @@ namespace DogGo.Repositories
                                 Name = reader.GetString(reader.GetOrdinal("OwnerName"))
 
                             }
+                            Dog = new Dog
+                            { 
+                                Name = reader.GetString(reader.GetOrdinal("DogName"))
+                            }
 
 
                         };
@@ -124,7 +128,7 @@ namespace DogGo.Repositories
                             OUTPUT INSERTED.ID
                             VALUES (@date, @duration, @walkerId, @dogId)";
                     cmd.Parameters.AddWithValue("@date", walks.Date);
-                    cmd.Parameters.AddWithValue("@uration", walks.Duration);
+                    cmd.Parameters.AddWithValue("@duration", walks.Duration);
                     cmd.Parameters.AddWithValue("@walkerId", walks.WalkerId);
                     cmd.Parameters.AddWithValue("@dogId", walks.DogId);
                     int id = (int)cmd.ExecuteScalar();

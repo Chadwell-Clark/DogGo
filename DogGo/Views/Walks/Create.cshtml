@@ -13,10 +13,10 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             @*<div class="form-group">
-                <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control" />
-                <span asp-validation-for="Id" class="text-danger"></span>
-            </div>*@
+            <label asp-for="Id" class="control-label"></label>
+            <input asp-for="Id" class="form-control" />
+            <span asp-validation-for="Id" class="text-danger"></span>
+        </div>*@
             <div class="form-group">
                 <label asp-for="Walks.Date" class="control-label"></label>
                 <input asp-for="Walks.Date" class="form-control" />
@@ -27,13 +27,9 @@
                 <input asp-for="Walks.Duration" class="form-control" />
                 <span asp-validation-for="Walks.Duration" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-                <label asp-for="WalkerId" class="control-label"></label>
-                <input asp-for="WalkerId" class="form-control" />
-                <span asp-validation-for="WalkerId" class="text-danger"></span>
-            </div>*@
+           
             <div class="form-group">
-                <label asp-for="Walks.WalkerId" class="control-label"></label>
+                <label asp-for="Walks.WalkerId" class="control-label">Walkers</label>
                 <select asp-for="Walks.WalkerId" class="form-control">
                     <option value="">Select Walker</option>
                     @foreach (Walker walker in Model.Walkers)
@@ -43,11 +39,19 @@
                 </select>
                 <span asp-validation-for="Walks.WalkerId" class="text-danger"></span>
             </div>
+            @*Multiselect for dogs-- create int array MultiSelectDogs to hold each dogid-- then loop through in controller to add to walks DB*@
             <div class="form-group">
-                <label asp-for="Walks.DogId" class="control-label"></label>
-                <input asp-for="Walks.DogId" class="form-control" />
+                <label asp-for="Walks.DogId" class="control-label">Dogs</label>
+                <select asp-for="MultiSelectDogs" class="select form-control"multiple>
+                    <option value="">Select Dog(s)</option>
+                    @foreach (Dog dog in Model.Dogs)
+                    {
+                        <option value="@dog.Id">@dog.Name</option>
+                    }
+                </select>
                 <span asp-validation-for="Walks.DogId" class="text-danger"></span>
             </div>
+           
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

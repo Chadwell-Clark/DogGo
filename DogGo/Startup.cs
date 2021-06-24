@@ -30,6 +30,7 @@ namespace DogGo
             services.AddTransient<IDogRepository, DogRepository>();
             services.AddTransient<INeighborhoodRepository, NeighborhoodRepository>();
             services.AddTransient<IWalksRepository, WalksRepository>();
+            
 
         }
 

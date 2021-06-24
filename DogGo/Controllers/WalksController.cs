@@ -1,4 +1,6 @@
-﻿using DogGo.Repositories;
+﻿using DogGo.Models;
+using DogGo.Models.ViewModels;
+using DogGo.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -40,21 +42,31 @@ namespace DogGo.Controllers
         // GET: WalksController/Create
         public ActionResult Create()
         {
-            return View();
+
+            List<Walker> walkers = _walkerRepo.GetAllWalkers();
+            List<Dog> dogs = _dogRepo.GetAllDogs();
+            WalksFormViewModel vm = new WalksFormViewModel()
+            {
+                Walks = new Walks(),
+                Walkers = walkers,
+                Dogs = dogs
+            };
+            return View(vm);
         }
 
         // POST: WalksController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Walks walks)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                _walksRepo.AddWalks(walks);
+                return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(walks);
             }
         }
 

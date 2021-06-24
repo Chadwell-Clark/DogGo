@@ -38,15 +38,15 @@
                     <thead>
                         <tr>
 
-                            <th>
+                            <th class="lrmargin">
                                 Date
                             </th>
-                            <th>
+                            <th class="lrmargin">
                                 Client
                             </th>
                             <th>
                                 </th>
-                            <th>
+                            <th class="lrmargin">
                                 Duration
                             </th>
 
@@ -54,26 +54,27 @@
                         </tr>
                     </thead>
                     <tbody>
+                            @{double total = 0.0; }
                         @foreach (Walks walk in Model.Walks)
                         {
                             <tr>
 
-                                <td class="text-center">
+                                <td class="text-center lrmargin">
                                     
                                     @walk.Date.ToShortDateString()
                                 </td>
-                                <td class="text-center">
+                                <td class="text-center lrmargin">
                                     @walk.Owner.Name
                                 </td>
                                 <td>
                                     </td>
-                                <td class="text-center" >
+                                <td class="text-center lrmargin" >
                                    @walk.Duration
                                 </td>
                                 
-                                
+                                @{total += walk.Duration; }
                             </tr>
-                        }
+                                    }
                     </tbody>
                     
                 </table>
@@ -83,7 +84,7 @@
         
 
         <section class="col-lg-4 col-md-8 container mt-5">
-            <h1>Total Walk Time</h1>
+            <h1>Total Walk Time @total</h1>
 
             @*<ul class="list-group mt-4">
                 @foreach (Walker walker in Model.Walkers)

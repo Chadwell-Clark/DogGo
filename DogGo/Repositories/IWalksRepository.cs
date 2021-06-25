@@ -13,5 +13,7 @@ namespace DogGo.Repositories
 
         void AddWalks(Walks walks);
 
+        void DeleteWalks(int id);
+
     }
 }

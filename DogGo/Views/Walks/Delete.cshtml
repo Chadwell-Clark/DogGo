@@ -1,37 +1,43 @@
-﻿@model IEnumerable<DogGo.Models.Walks>
+﻿@model DogGo.Models.ViewModels.WalksDeleteViewModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Delete";
 }
 
-<h1>Walks</h1>
+<h1>Walks to Delete</h1>
 
-<p>
-    <a asp-action="Delete">Delete Walks</a>
-</p>
+<form asp-action="Delete">
+
+
 <table class="table">
     <thead>
-        <tr>
+        <tr><th>
+            Delete
+            </th>
             
             <th>
-                @Html.DisplayNameFor(model => model.Date)
+               Date 
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Duration)
+                Duration
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.WalkerId)
+               Walker
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DogId)
+                Dog
+            </th>
+            <th>
+                Owner
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+
+@foreach (var item in Model.Walks) {
         <tr>
-            
+            <select asp->
             <td>
                 @Html.DisplayFor(modelItem => item.Date)
             </td>
@@ -45,11 +51,12 @@
                 @Html.DisplayFor(modelItem => item.DogId)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
             </td>
         </tr>
 }
     </tbody>
 </table>
+    </form>

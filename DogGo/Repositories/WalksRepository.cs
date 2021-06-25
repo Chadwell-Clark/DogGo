@@ -69,7 +69,7 @@ namespace DogGo.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT w.Id, w.Duration, w.Date, w.WalkerId, w.DogId, o.Name AS OwnerName
+                        SELECT w.Id, w.Duration, w.Date, w.WalkerId, w.DogId, o.Name AS OwnerName d.name AS DogName
                         FROM Walks w
                         LEFT JOIN Dog d ON w.DogId = d.Id
                         JOIN Owner o ON d.OwnerId = o.Id
@@ -97,6 +97,10 @@ namespace DogGo.Repositories
                             {
                                 Name = reader.GetString(reader.GetOrdinal("OwnerName"))
 
+                            },
+                            Dog = new Dog
+                            { 
+                                Name = reader.GetString(reader.GetOrdinal("DogName"))
                             }
 
 
@@ -132,6 +136,21 @@ namespace DogGo.Repositories
 
                 }
             
+            }
+        }
+
+        public void DeleteWalks(int walksId)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                                DELETE FROM Walks
+                                WHERE Id = @id";
+                    cmd.Parameters.AddWithValue("@id", walksId);
+                }
             }
         }
     }

@@ -18,5 +18,7 @@ namespace DogGo.Models
 
         public Owner Owner { get; set; }
 
+        public Dog Dog { get; set; }
+
     }
 }

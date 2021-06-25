@@ -14,5 +14,7 @@ namespace DogGo.Models.ViewModels
 
         public int[] MultiSelectDogs { get; set; }
 
+        public DateTime DateTime { get; set; }
+
     }
 }

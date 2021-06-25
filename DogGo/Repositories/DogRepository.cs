@@ -194,6 +194,23 @@ namespace DogGo.Repositories
                     :cmd.Parameters.AddWithValue("@imageurl", dog.ImageUrl);
                     
                     cmd.Parameters.AddWithValue("@ownerId", dog.OwnerId);
+                    //if (dog.Notes == null)
+                    //{
+                    //    cmd.Parameters.AddWithValue("@notes", DBNull.Value);
+                    //}
+                    //else
+                    //{
+                    //    cmd.Parameters.AddWithValue("@notes", dog.Notes);
+                    //}
+
+                    //if (dog.ImageUrl == null)
+                    //{
+                    //    cmd.Parameters.AddWithValue("@imageUrl", DBNull.Value);
+                    //}
+                    //else
+                    //{
+                    //    cmd.Parameters.AddWithValue("@imageUrl", dog.ImageUrl);
+                    //}
 
                     int id = (int)cmd.ExecuteScalar();
 

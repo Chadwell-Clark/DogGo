@@ -47,14 +47,14 @@ namespace DogGo.Controllers
 
             List<Walker> walkers = _walkerRepo.GetAllWalkers();
             List<Dog> dogs = _dogRepo.GetAllDogs();
-            DateTime datetime = new DateTime();
+            DateTime now =  DateTime.Now;
             WalksFormViewModel vm = new WalksFormViewModel()
 
             {
                 Walks = new Walks(),
                 Walkers = walkers,
                 Dogs = dogs,
-                DateTime = datetime
+                DateTime = now
             };
             return View(vm);
         }
